@@ -86,7 +86,7 @@ export default function showDepartments(props) {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button size="small" type="primary" onClick={()=>router.push('/employee/showEmployees' + text.departmentid)}>
+          <Button size="small" type="primary" onClick={()=>router.push('/employee/showEmployees/' + text.departmentid)}>
             view
           </Button>
           <Button size="small" type="primary" onClick={()=>router.push('/employees/' + text.departmentid)}>
