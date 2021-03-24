@@ -23,6 +23,7 @@ export default function login() {
   async function handleLogin (values) {
     const grailsResponse = await verification(values);
     const data = await grailsResponse.json();
+    console.log(data)
     if (data.status==200) {
       router.push('/department/showDepartments')
     }else {

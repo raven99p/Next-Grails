@@ -14,7 +14,7 @@ export default function LayoutCustom({ children}) {
       
       <Menu theme="dark" mode="horizontal">
         <Menu.Item key="1">
-          <Link href="/">
+          <Link href="/department/showDepartments">
                 <a> Postem </a>
           </Link>
         </Menu.Item>
@@ -37,7 +37,7 @@ export default function LayoutCustom({ children}) {
         </Breadcrumb.Item> 
       </Breadcrumb>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    <Footer style={{ textAlign: 'center' }}>Postem ©2021 </Footer>
   </Layout>
   )
 }

@@ -17,10 +17,10 @@ const content = {
   marginTop: '100px',
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   console.log('fetching..');
   try {
-    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`, {method: 'GET'});
+    const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${context.params.id}.json`, {method: 'GET'});
     const data = await res.json();
     if(!data)
     return {
