@@ -12,10 +12,7 @@ export async function verification(props){
         password:props.password
       })
     });
-    console.log('this is the response');
-    console.log(res);
     return res;
-    
   }catch(e){
     console.log(e)
   }
