@@ -1,104 +1,147 @@
-import { Form, Select, InputNumber, Switch, Slider, Button } from 'antd'
-
-// Custom DatePicker that uses Day.js instead of Moment.js
-import DatePicker from '../components/DatePicker'
-
-import { SmileFilled } from '@ant-design/icons'
-
+import { Form,
+  Button,
+  Layout,
+  Menu,
+  Breadcrumb,
+  Input,
+  Row,Col
+} from 'antd'
 import Link from 'next/link'
-
-const FormItem = Form.Item
-const Option = Select.Option
-
+import React, { useState } from 'react';
+import { verification, logout } from '../utilitieFunctions/authenticationFetchingFunctions'
+import {useRouter} from 'next/router';
+const { Header, Content, Footer } = Layout;
 const content = {
   marginTop: '100px',
 }
 
-export default function Home() {
+/*async function getServerSideProps() { 
+  console.log('fetching..');
+  try {
+    const res = await fetch(`http://localhost:8080/authenticationResponder/verify.json`, {method: 'POST'});
+    const data = await res.json();
+    if(!data)
+    return {
+      responde: res,
+    }
+    return {
+      props:{
+        data,
+      },
+    }}catch(e) {
+        console.log(e)
+      }
+}*/
+
+export default function login() {
+
+
+  const router = useRouter();
+  async function handleRegister (values) {
+    const grailsResponse = await verification(values);
+    const data = await grailsResponse.json();
+    console.log('this is the data in page')
+    console.log(data);
+    if (data.status=200) {
+      router.push('/department/showDepartments')
+    }else {
+      //message user not found
+    }
+    
+    
+    console.log(values);
+  }
+
   return (
-    <div style={content}>
-      <div className="text-center mb-5">
-        <Link href="#">
-          <a className="logo mr-0">
-            <SmileFilled size={48} strokeWidth={1} />
-          </a>
-        </Link>
+    <Layout className="layout">
 
-        <p className="mb-0 mt-3 text-disabled">Welcome to the world !</p>
-      </div>
-      <div>
-        <Form layout="horizontal">
-          <FormItem
-            label="Input Number"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 8 }}
-          >
-            <InputNumber
-              size="large"
-              min={1}
-              max={10}
-              style={{ width: 100 }}
-              defaultValue={3}
-              name="inputNumber"
-            />
-          </FormItem>
+      <title>Postem</title>
+    
+    <Header>
+      <div className="logo" />
+      
+      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+        <Menu.Item key="1">
+          <Link href="/">
+                <a> Σύνδεση </a>
+          </Link>
+        </Menu.Item>    
+        <div style={{float:'right'}}>
+          Δεν είστε συνδεδεμένος.
+        </div>
 
-          <FormItem
-            label="Switch"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 8 }}
+      </Menu>
+      
+    </Header>
+    <Content style={{ padding: '0 50px' }}>
+      <Breadcrumb style={{ margin: '16px 0' }}>
+      <Breadcrumb.Item>
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}><br/></Col>
+          <Col span={8}></Col>
+        </Row>
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}>
+          <Form
+            onFinish = {handleRegister}
           >
-            <Switch defaultChecked name="switch" />
-          </FormItem>
-
-          <FormItem
-            label="Slider"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 8 }}
-          >
-            <Slider defaultValue={70} />
-          </FormItem>
-
-          <FormItem
-            label="Select"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 8 }}
-          >
-            <Select
-              size="large"
-              defaultValue="lucy"
-              style={{ width: 192 }}
-              name="select"
+            <Form.Item
+              name="username"
+              label="username"
+              rules={[
+                {
+                  type: 'email',
+                  message: 'The input is not valid E-mail!',
+                },
+                {
+                  required: true,
+                  message: 'Please input your E-mail!',
+                },
+              ]}
             >
-              <Option value="jack">jack</Option>
-              <Option value="lucy">lucy</Option>
-              <Option value="disabled" disabled>
-                disabled
-              </Option>
-              <Option value="yiminghe">yiminghe</Option>
-            </Select>
-          </FormItem>
+              <Input />
+            </Form.Item>
 
-          <FormItem
-            label="DatePicker"
-            labelCol={{ span: 8 }}
-            wrapperCol={{ span: 8 }}
-          >
-            <DatePicker name="startDate" />
-          </FormItem>
-          <FormItem
-            style={{ marginTop: 48 }}
-            wrapperCol={{ span: 8, offset: 8 }}
-          >
-            <Button size="large" type="primary" htmlType="submit">
-              OK
-            </Button>
-            <Button size="large" style={{ marginLeft: 8 }}>
-              Cancel
-            </Button>
-          </FormItem>
-        </Form>
-      </div>
-    </div>
+            <Form.Item
+              name="password"
+              label="Password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your password!',
+                },
+              ]}
+              hasFeedback
+            >
+              <Input.Password />
+            </Form.Item>
+
+            <Form.Item style={{ textAlign: 'center' }} >
+              <Button type="primary" htmlType="submit" style={{ textAlign: 'center' }}>
+                Σύνδεση
+              </Button>
+            </Form.Item>
+          </Form>
+
+        </Col>
+        <Col span={8}></Col>
+      </Row>
+
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}></Col>
+          <Col span={8}></Col>
+        </Row>
+      </Breadcrumb.Item>
+
+
+      </Breadcrumb>
+    </Content>
+    <Footer style={{ textAlign: 'center' }}>Postem ©2021</Footer>
+  </Layout>
+    
   )
 }
+
