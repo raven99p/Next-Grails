@@ -4,7 +4,8 @@ import { Form,
   Menu,
   Breadcrumb,
   Input,
-  Row,Col
+  Row,Col,
+  notification
 } from 'antd'
 import Link from 'next/link'
 import React, { useState } from 'react';
@@ -19,15 +20,39 @@ export default function login() {
 
   const router = useRouter();
 
-  async function handleRegister (values) {
+  async function handleLogin (values) {
     const grailsResponse = await verification(values);
     const data = await grailsResponse.json();
     if (data.status==200) {
       router.push('/department/showDepartments')
-    }else if(data.status==400) {
-      //message user not found
+    }else {
+      openNotification()
     }  
   }
+
+  const close = () => {
+    console.log(
+      'Notification was closed. Either the close button was clicked or duration time elapsed.',
+    );
+  };
+  const openNotification = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => {notification.close(key);}}>
+        Κατάλαβα
+      </Button>
+    );
+    notification.open({
+      message: 'Λάθος στοιχεία',
+      description:
+        'Εισάγατε λάθος στοιχεία, παρακαλώ δοκιμάστε ξανά',
+      btn,
+      key,
+      onClose: close,
+    });
+  };
+
+
 
   return (
     <Layout className="layout">
@@ -62,7 +87,7 @@ export default function login() {
           <Col span={8}></Col>
           <Col span={8}>
           <Form
-            onFinish = {handleRegister}
+            onFinish = {handleLogin}
           >
             <Form.Item
               name="username"
