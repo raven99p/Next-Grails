@@ -21,7 +21,7 @@ export async function createEmployee(props){
   }
 }
 
-export async function updateDepartment(props){
+export async function updateEmployee(props){
   console.log('Creating department..')
   try{
     const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployee.json`, {
@@ -44,7 +44,7 @@ export async function updateDepartment(props){
   }
 }
 
-export async function deleteDepartment(departmentId){
+export async function deleteEmployee(employeeId){
   console.log('Creating department..')
   try{
     const res = await fetch(`http://localhost:8080/employeeResponder/deleteEmployee.json`, {
@@ -54,7 +54,7 @@ export async function deleteDepartment(departmentId){
         'Content-type':'application/json'
       },
       body: JSON.stringify({
-          employeeId: props.employeeId
+          employeeId: employeeId
       })
     });
     return res;
