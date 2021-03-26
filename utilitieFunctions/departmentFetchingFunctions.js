@@ -37,8 +37,7 @@ export async function updateDepartment(props){
     }
 }
 
-
-export async function deleteDepartment(props){
+export async function deleteDepartment(departmentId){
     console.log('Creating department..')
     try{
       const res = await fetch(`http://localhost:8080/departmentResponder/deleteDepartment.json`, {
@@ -48,7 +47,7 @@ export async function deleteDepartment(props){
           'Content-type':'application/json'
         },
         body: JSON.stringify({
-            departmentId: props.departmentId
+            departmentId: departmentId
         })
       });
       return res;

@@ -7,7 +7,7 @@ import {
 import LayoutCustom from '../../components/layout'
 import {useRouter} from 'next/router'
 import { createDepartment } from '../../utilitieFunctions/departmentFetchingFunctions'
-export default function Hire() {
+export default function createDepartmentForm() {
 
     const router = useRouter();
 
@@ -35,7 +35,7 @@ export default function Hire() {
                             onFinish={handleCreateDepartment}
                     >
                         <Form.Item name="departmentName" label="departmentName" rules={[{ required: true }]}>
-                            <Input name = "departmentName" id="departmentName" onChange={(e)=>setDepartmentName(e)}/>
+                            <Input name = "departmentName" id="departmentName" />
                         </Form.Item>
                         
                         <Form.Item style={{ textAlign: 'center' }} >
