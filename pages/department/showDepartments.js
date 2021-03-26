@@ -1,15 +1,10 @@
-import { Form,
+import { 
   Button,
-  Layout,
-  Menu,
-  Breadcrumb,
-  Input,
-  Row,Col,
   Table,
   Space,
   notification
 } from 'antd'
-import Link from 'next/link'
+
 import LayoutCustom from '../../components/layout'
 import { deleteDepartment } from '../../utilitieFunctions/departmentFetchingFunctions'
 import {useRouter} from 'next/router';
@@ -45,7 +40,7 @@ export async function getServerSideProps() {
 export default function showDepartments(props) {
   
   const router = useRouter();
-  const data = props.data;
+  const data = props.data.responseMessage;
 
 
   async function handleDeleteDepartment (departmentId) {
