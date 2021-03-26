@@ -3,95 +3,71 @@ import {
     Select, 
     Input,
     Button, 
-    Layout, 
-    Menu, 
-    Breadcrumb, 
     DatePicker,
+    Row,Col
   } from 'antd';
-  import Head from 'next/head';
   import {useRouter} from 'next/router';
-  import Link from 'next/link';
-  import {createEmp,updateEmp,deleteEmp,deleteAllEmp} from '../../utils/fetch_fun';
-  import {useState, useEffect, useReducer} from 'react';
-  const { Header, Footer, Content } = Layout;;
-  const FormItem = Form.Item;
-  const Option = Select.Option;
-  
+  import LayoutCustom from '../../components/layout'
+
+
+
   
   
   export default function Hire(props) {
     const router = useRouter();
-    const [body,  setBody ] = useState({First:'',Last:'',Act:'',Date:''});
-  
-  // NOTE: line:94 if any of the form's inputs are blank, Hire button is disabled
-  
-  
-    function handleChange(value) {
-      setBody({...body,Act:value});
-    }
-    function changeDate(date, dateString) {
-      setBody({...body,Date:dateString});
-    }
-  
+      
+      
     return (
-      <Layout className="layout">
-      <Head>
-          <title>Postem</title>
-      </Head>
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
-          <Menu.Item key="1" >
-          <Link href="/">
-                <a> Postem </a>
-          </Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-          <Link href="/employees">
-                <a> Employees </a>
-          </Link>
-          </Menu.Item>
-          <Menu.Item key="3" >
-          <Link href="/employees/hire">
-                <a> Hire </a>
-          </Link>
-          </Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
-        <Breadcrumb style={{ margin: '16px 0' }}/>
-        <div className="site-layout-content">
-          <Form labelCol={{ span: 4 }}
-                wrapperCol={{ span: 14 }}
-                layout="horizontal"
-          >
-            <Form.Item label="First name">
-              <Input onChange={(e)=>setBody({...body,First:e.target.value})}/>
-            </Form.Item>
-            <Form.Item label="Last name">
-              <Input onChange={(e)=>setBody({...body,Last:e.target.value})}/>
-            </Form.Item>
-            <Form.Item label="Activity">
-              <Select onChange={handleChange}> 
-                <Option value="true" >Active</Option>
-                <Option value="false">Not Active</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item label="DatePicker">
-              <DatePicker onChange={changeDate} />
-            </Form.Item>
-          </Form>
-        </div>
-        <Button size="large" type="primary" disabled = {!body.First||!body.Last||!body.Act||!body.Date} onClick={()=>createEmp(body)}>
-            Hire
-        </Button>
-      </Content>
-      <Footer style={{ textAlign: 'center' }}>
-      <Link href="/about">
-                <a>About me..     </a>
-      </Link>
-      Powered by PostBoy
-      </Footer>
-    </Layout>
+      <LayoutCustom>    
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}><br/></Col>
+          <Col span={8}></Col>
+        </Row>
+        <Row>
+          <Col span={6}></Col>
+          <Col span={12}>
+            <Form labelCol={{ span: 6 }}
+                  wrapperCol={{ span: 14 }}
+                  layout="horizontal"
+            >
+              <Form.Item label="Όνομα">
+                <Input />
+              </Form.Item>
+              <Form.Item label="Επώνυμο">
+                <Input />
+              </Form.Item>
+              <Form.Item label="ΑΦΜ">
+                <Input />
+              </Form.Item>
+              
+              <Form.Item label="Ημερομηνία γέννησης">
+                <DatePicker />
+              </Form.Item>
+              <Form.Item label="Τμήμα">
+                <Input />
+              </Form.Item>
+              <Form.Item>
+                <Button size="large" type="primary">
+                  Hire
+                </Button>
+              </Form.Item>
+            </Form>
+
+        </Col>
+        <Col span={6}></Col>
+      </Row>
+
+        <Row>
+          <Col span={8}></Col>
+          <Col span={8}></Col>
+          <Col span={8}></Col>
+        </Row>
+        
+          
+          
+        
+      
+    </LayoutCustom>
     )
   }
