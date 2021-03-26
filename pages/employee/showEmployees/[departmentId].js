@@ -35,10 +35,9 @@ export async function getServerSideProps(context) {
 export default function showEmployees(props) {
   const router = useRouter();
   const data = props.data.messageResponse;  
-  console.log(data)
+  //console.log(data);
   
 
-  // NOTE: These are the colomn of the table
   const close = () => {
     console.log(
       'Notification was closed. Either the close button was clicked or duration time elapsed.',
@@ -118,7 +117,7 @@ export default function showEmployees(props) {
 
   return (
     <LayoutCustom>
-        <Table columns={columns} dataSource={data.allEmployeesofDepartment} /> 
+        <Table rowKey = "employeeid" columns={columns} dataSource={data.allEmployeesofDepartment} /> 
     </LayoutCustom>
     
   )

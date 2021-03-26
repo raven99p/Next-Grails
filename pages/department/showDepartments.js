@@ -110,7 +110,7 @@ export default function showDepartments(props) {
 
   return (
     <LayoutCustom>
-        <Table columns={columns} dataSource={data} />
+        <Table rowKey = "departmentid" columns={columns} dataSource={data} />
     </LayoutCustom>
     
   )

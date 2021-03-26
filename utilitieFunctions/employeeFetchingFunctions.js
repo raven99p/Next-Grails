@@ -1,86 +1,73 @@
-export async function createEmp(props){
-    console.log('sending data..')
-    try{
-      const res = await fetch(`http://localhost:8080/Employee`, {
-        method: 'POST',
-        headers:{
-          'Accept':'application/json',
-          'Content-type':'application/json'
-        },
-        body: JSON.stringify({
-          first_name:props.First,
-          last_name:props.Last,
-          is_active:props.Act,
-          date_of_birth:props.Date
-        })
-      });
-    }catch(e){
-      console.log(e)
-    }
+export async function createEmployee(props){
+  console.log('Creating department..')
+  try{
+    const res = await fetch(`http://localhost:8080/employeeResponder/postEmployee.json`, {
+      method: 'POST',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({
+        firstName: props.firstName,
+        lastName: props.lastName,
+        afm: props.afm,
+        dob: props.dob,
+        departmentId: props.departmentId
+      })
+    });
+    return res;
+  }catch(e){
+    console.log(e)
   }
-  
-  export async function updateEmp(props){
-    console.log('updating..')
-    try{
-      const res = await fetch(`http://localhost:2020/Employee/${props.Id}`, {
-        method: 'PUT',
-        headers:{
-          'Accept':'application/json',
-          'Content-type':'application/json'
-        },
-        body: JSON.stringify({
-          first_name:props.First,
-          last_name:props.Last,
-          is_active:props.Act,
-          date_of_birth:props.Date,
-        })
-      });
-    }catch(e){
-      console.log(e)
-    }
+}
+
+export async function updateDepartment(props){
+  console.log('Creating department..')
+  try{
+    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployee.json`, {
+      method: 'PUT',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({
+        firstName: props.firstName,
+        lastName: props.lastName,
+        afm: props.afm,
+        dob: props.dob,
+        departmentId: props.departmentId
+      })
+    });
+    return res;
+  }catch(e){
+    console.log(e)
   }
-  
-  
-  export async function deleteEmp(props){
-    console.log('deleting..')
-    try{
-      const res = await fetch(`http://localhost:2020/Employee/${props}`, {method: 'DELETE'});
-    }catch(e){
-      console.log(e)
-    }
+}
+
+export async function deleteDepartment(departmentId){
+  console.log('Creating department..')
+  try{
+    const res = await fetch(`http://localhost:8080/employeeResponder/deleteEmployee.json`, {
+      method: 'DELETE',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({
+          employeeId: props.employeeId
+      })
+    });
+    return res;
+  }catch(e){
+    console.log(e)
   }
-  
-  
-  export async function deleteAllEmp(){
-    console.log('deleting All..')
-    try{
-      const res = await fetch(`http://localhost:2020/Employee`, {method: 'DELETE'});
-    }catch(e){
-      console.log(e)
-    }
-  }
-  
-  
-  
-  export async function getEmpId(props){
-    console.log('fetching employee')
-     try{
-      const res = await fetch(`http://localhost:2020/Employee/${props}`, {method: 'GET'});
-      const data = await res.json()
-      if(!data)
-      return {
-        notFound: true,
-      }
-      return {
-        props:{
-          data,
-        },
-      }}catch(e) {
-          console.log(e)
-        }
-  }
-  
-  
-  
-  
-  
+}
+
+
+/*
+        get "/employeeResponder/getEmployees/(.$format)"(controller: 'employeeResponder', action: 'getEmployees')
+        post "/employeeResponder/postEmployee(.$format)"(controller: 'employeeResponder', action: 'postEmployees')
+        put "/employeeResponder/updateEmployee(.$format)"(controller: 'employeeResponder', action: 'updateEmployee')
+        delete "/employeeResponder/deleteEmployee(.$format)"(controller: 'employeeResponder', action: 'deleteEmployee')
+        get "/employeeResponder/updateEmployeeForm(.$format)"(controller: 'employeeResponder', action: 'updateEmployeeForm')
+*/
