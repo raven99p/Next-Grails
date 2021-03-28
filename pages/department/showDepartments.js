@@ -50,6 +50,8 @@ export default function showDepartments(props) {
     console.log(data);
     if (data.status==200) {
       router.push('/department/showDepartments');
+    } else if (data.status==400) {
+      openNotificationFailedDepartmentDelete();
     }
 }
 
@@ -58,17 +60,34 @@ export default function showDepartments(props) {
       'Notification was closed. Either the close button was clicked or duration time elapsed.',
     );
   };
-  const openNotification = (id) => {
+  const openNotificationDelete = (id) => {
     const key = `open${Date.now()}`;
     const btn = (
       <Button type="primary" size="small" onClick={() => {notification.close(key);handleDeleteDepartment(id)}}>
-        Delete
+        Διαγραφή
       </Button>
     );
     notification.open({
       message: 'Confirm deletion',
       description:
         'Press delete if you wish to delete this employee ',
+      btn,
+      key,
+      onClose: close,
+    });
+  };
+
+  const openNotificationFailedDepartmentDelete = () => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => {notification.close(key)}}>
+        Κατάλαβα
+      </Button>
+    );
+    notification.open({
+      message: 'Πρόβλημα διαγραφής',
+      description:
+        'Η διαγραφή του τμήματος απέτυχε καθώς περιέχει ακόμα ενεργούς υπαλλήλους.',
       btn,
       key,
       onClose: close,
@@ -98,7 +117,7 @@ export default function showDepartments(props) {
           <Button size="small" type="primary" onClick={()=>router.push('/department/editDepartmentForm/' + text.departmentid)}>
             Edit
           </Button>
-          <Button size="small" type="primary" onClick={()=>openNotification(text.departmentid)}>
+          <Button size="small" type="primary" onClick={()=>openNotificationDelete(text.departmentid)}>
             Delete
           </Button>
         </Space>

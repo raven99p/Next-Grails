@@ -35,7 +35,7 @@ export default function createDepartmentForm() {
                             onFinish={handleCreateDepartment}
                     >
                         <Form.Item name="departmentName" label="departmentName" rules={[{ required: true }]}>
-                            <Input name = "departmentName" id="departmentName" />
+                            <Input name = "departmentName" id="departmentName" maxLength="10"/>
                         </Form.Item>
                         
                         <Form.Item style={{ textAlign: 'center' }} >

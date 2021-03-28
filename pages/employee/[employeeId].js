@@ -79,17 +79,17 @@ export async function getServerSideProps(context) {
                     }
                 }   
             >
-              <Form.Item name="employeeId" label="Id" type="text" rules={[{ required: true }]} >
-                <Input  readOnly/>
+              <Form.Item name="employeeId" label="Id" type="text"  rules={[{ required: true }]} >
+                <Input  readOnly />
               </Form.Item>
               <Form.Item name="firstName" label="Όνομα" type="text" rules={[{ required: true }]} >
-                <Input  />
+                <Input  maxLength="50"/>
               </Form.Item>
               <Form.Item name="lastName" label="Επώνυμο" type="text" rules={[{ required: true }]}>
-                <Input />
+                <Input maxLength="50"/>
               </Form.Item>
               <Form.Item name="afm" label="ΑΦΜ" rules={[{ required: true }]}>
-                <Input />
+                <Input maxLength="9"/>
               </Form.Item>
               <Form.Item name="dob" label="Ημερομηνία γέννησης" rules={[{ required: true }]}>
                 <DatePicker />
@@ -103,7 +103,7 @@ export async function getServerSideProps(context) {
               </Form.Item>
               <Form.Item style={{ textAlign: 'center' }} >
                 <Button type="primary" htmlType="submit" style={{ textAlign: 'center' }}>
-                    Δημιουργία
+                    Ενημέρωση
                 </Button>
               </Form.Item> 
             </Form>

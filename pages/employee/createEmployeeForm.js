@@ -68,13 +68,13 @@ export async function getServerSideProps() {
                   onFinish={handleCreateEmployee}
             >
               <Form.Item name="firstName" label="Όνομα" type="text" rules={[{ required: true }]} >
-                <Input  />
+                <Input maxLength="50" />
               </Form.Item>
               <Form.Item name="lastName" label="Επώνυμο" type="text" rules={[{ required: true }]}>
-                <Input />
+                <Input maxLength="50"/>
               </Form.Item>
               <Form.Item name="afm" label="ΑΦΜ" rules={[{ required: true }]}>
-                <Input />
+                <Input maxLength="9"/>
               </Form.Item>
               <Form.Item name="dob" label="Ημερομηνία γέννησης" rules={[{ required: true }]}>
                 <DatePicker />
