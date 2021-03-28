@@ -37,7 +37,7 @@ export default function showEmployees(props) {
   const data = props.data.messageResponse;  
   console.log(data);
   const currentDepartment = data.departmentInformation;
-  
+
   async function handleDeleteEmployee(id) {
     const grailsResponse = await deleteEmployee(id);
     const data = await grailsResponse.json();
@@ -110,7 +110,7 @@ export default function showEmployees(props) {
         key: 'action',
         render: (text, record) => (
           <Space size="middle">
-            <Button size="small" type="primary" onClick={()=>router.push('/employees/' + text.id + '.json')}>
+            <Button size="small" type="primary" onClick={()=>router.push('/employee/' + text.employeeid)}>
               Edit
             </Button>
             <Button size="small" type="primary" onClick={()=>openNotification(text.employeeid)}>

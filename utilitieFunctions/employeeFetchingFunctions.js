@@ -31,6 +31,7 @@ export async function updateEmployee(props){
         'Content-type':'application/json'
       },
       body: JSON.stringify({
+        employeeId: props.employeeId,
         firstName: props.firstName,
         lastName: props.lastName,
         afm: props.afm,
