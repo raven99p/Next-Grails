@@ -2,7 +2,7 @@ import { Button, Layout, Menu, Breadcrumb, Table, Space, Alert, notification } f
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import LayoutCustom from '../../../components/layout'
-
+import { deleteEmployee } from '../../../utilitieFunctions/employeeFetchingFunctions'
 
 export async function getServerSideProps(context) {
   console.log('fetching..');
@@ -35,8 +35,16 @@ export async function getServerSideProps(context) {
 export default function showEmployees(props) {
   const router = useRouter();
   const data = props.data.messageResponse;  
-  //console.log(data);
+  console.log(data);
+  const currentDepartment = data.departmentInformation;
   
+  async function handleDeleteEmployee(id) {
+    const grailsResponse = await deleteEmployee(id);
+    const data = await grailsResponse.json();
+    if (data.status==200) {
+      router.push('/employee/showEmployees/'+currentDepartment.departmentid);
+    }
+  }
 
   const close = () => {
     console.log(
@@ -46,7 +54,7 @@ export default function showEmployees(props) {
   const openNotification = (id) => {
     const key = `open${Date.now()}`;
     const btn = (
-      <Button type="primary" size="small" onClick={() => {notification.close(key);deleteEmp(id)}}>
+      <Button type="primary" size="small" onClick={() => {notification.close(key);handleDeleteEmployee(id)}}>
         Delete
       </Button>
     );
@@ -105,7 +113,7 @@ export default function showEmployees(props) {
             <Button size="small" type="primary" onClick={()=>router.push('/employees/' + text.id + '.json')}>
               Edit
             </Button>
-            <Button size="small" type="primary" onClick={()=>openNotification(text.id)}>
+            <Button size="small" type="primary" onClick={()=>openNotification(text.employeeid)}>
               Delete
             </Button>
           </Space>
