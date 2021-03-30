@@ -5,8 +5,9 @@ export async function createDepartment(props){
         method: 'POST',
         headers:{
           'Accept':'application/json',
-          'Content-type':'application/json'
+          'Content-type':'application/json',
         },
+        credentials:'include',
         body: JSON.stringify({
           departmentName:props.departmentName
         })

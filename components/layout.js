@@ -1,9 +1,24 @@
-import { Layout, Menu, Breadcrumb} from 'antd';
+import { Layout, Menu, Breadcrumb, Button} from 'antd';
 import Link from 'next/link'
-
+import { Router, useRouter } from 'next/router';
+import { getSessionVariable, logout} from '../utilitieFunctions/authenticationFetchingFunctions'
 const { Header, Content, Footer } = Layout;
 
 export default function LayoutCustom({ children}) {
+  const router = useRouter();
+
+  async function handleLogout() {
+    const grailsResponse = await logout();
+    const data = await grailsResponse.json();
+    console.log(data);
+    if (data.status==200) {
+      router.push('/');
+    } else if (data.status==400) {
+      return [];
+    }
+  }  
+
+
   return (
     <Layout className="layout">
 
@@ -27,6 +42,12 @@ export default function LayoutCustom({ children}) {
           <Link href="/department/createDepartmentForm">
                 <a> Δημιουργία τμήματος </a>
           </Link>
+        </Menu.Item>
+        <Menu.Item key="4" style={{float: 'right'}}>
+          <a> Συνδεδεμένος ως  </a>
+        </Menu.Item>
+        <Menu.Item key="5" style={{float: 'right'}}>
+          <Button type="link" onClick={handleLogout}>Αποσύνδεση </Button>          
         </Menu.Item>
       </Menu>
     </Header>

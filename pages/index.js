@@ -7,6 +7,7 @@ import { Form,
   Row,Col,
   notification
 } from 'antd'
+import jwt_decode from "jwt-decode";
 import Link from 'next/link'
 import React, { useState } from 'react';
 import { verification, logout } from '../utilitieFunctions/authenticationFetchingFunctions'
@@ -19,16 +20,16 @@ const content = {
 export default function login() {
 
   const router = useRouter();
-
+  
   async function handleLogin (values) {
     const grailsResponse = await verification(values);
     const data = await grailsResponse.json();
-    console.log(data)
+    console.log(data);
     if (data.status==200) {
       router.push('/department/showDepartments')
     }else {
       openNotification()
-    }  
+    }
   }
 
   const close = () => {

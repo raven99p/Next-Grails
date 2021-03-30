@@ -4,7 +4,6 @@ import {
   Space,
   notification
 } from 'antd'
-
 import LayoutCustom from '../../components/layout'
 import { deleteDepartment } from '../../utilitieFunctions/departmentFetchingFunctions'
 import {useRouter} from 'next/router';
@@ -15,7 +14,7 @@ const content = {
 export async function getServerSideProps() {
   console.log('fetching..');
   try {
-    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`, {method: 'GET'});
+    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`,  {method: 'GET'});
     const data = await res.json();
     if(!data)
     return {
@@ -38,7 +37,7 @@ export async function getServerSideProps() {
 
 
 export default function showDepartments(props) {
-  
+
   const router = useRouter();
   const data = props.data.responseMessage;
 
