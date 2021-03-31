@@ -9,37 +9,32 @@ import {
 import {useRouter} from 'next/router';
 import LayoutCustom from '../../components/layout'
 import { createEmployee } from '../../utilitieFunctions/employeeFetchingFunctions'
-
-
+import { getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions'
+import {useState, useEffect} from 'react'
 const { Option } = Select;
 
-export async function getServerSideProps() {
-    console.log('fetching..');
-    try {
-      const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`, {method: 'GET'});
-      const data = await res.json();
-      if(!data)
-      return {
-        notFound: true,
-      }
-      return {
-        props:{
-          data,
-        },
-      }}catch(e) {
-          console.log(e);
-          const error = true
-          return {
-            props:{
-              error,
-            },
-          }
-        }  
-} 
+
+
   
-  export default function createEmployeeForm(props) {
+export default function createEmployeeForm() {
     const router = useRouter();
-    const data = props.data.responseMessage;
+    const [selectData, setSelectData] = useState([]);
+
+  async function getAllDepartments () {
+    const grailsResponse = await getDepartments();
+    const data = await grailsResponse.json();
+    console.log(data);
+    if (data.status==200) {
+      setSelectData(data.responseMessage);
+    } else if (data.status==400) {
+      setSelectData([]);
+    }
+  }
+
+  useEffect(()=> {
+    getAllDepartments();
+    console.log(selectData);
+  },[]);
 
     async function handleCreateEmployee(values) {
       values.dob = values.dob._d;
@@ -81,7 +76,7 @@ export async function getServerSideProps() {
               </Form.Item>
               <Form.Item name="departmentId" label="Τμήμα"  rules={[{ required: true }]}>
                 <Select>
-                  {data.map((value) => (
+                  {selectData.map((value) => (
                     <Option value={value.departmentid}>{value.departmentname}</Option>
                   ))}
                 </Select>

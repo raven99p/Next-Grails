@@ -29,7 +29,8 @@ export async function logout(){
       headers:{
         'Accept':'application/json',
         'Content-type':'application/json'
-      }
+      },
+      credentials:'include'
     });
     return res;
   }catch(e){
@@ -45,7 +46,8 @@ export async function getSessionVariable(){
       headers:{
         'Accept':'application/json',
         'Content-type':'application/json'
-      }
+      },
+      credentials:'include'
     });
     return res;
   }catch(e){

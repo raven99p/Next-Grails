@@ -6,16 +6,12 @@ import {
   } from 'antd';
 import LayoutCustom from '../../../components/layout'
 import {useRouter} from 'next/router'
-import { updateDepartment } from '../../../utilitieFunctions/departmentFetchingFunctions'
-
+import { updateDepartment, getDepartmentInformation } from '../../../utilitieFunctions/departmentFetchingFunctions'
+import { useState, useEffect} from 'react'
 
 export async function getServerSideProps(context) {
-    console.log('fetching..');
-    console.log(context.params);
     try {
-      const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartmentForm/${context.params.departmentId}` + `.json`, {method: 'GET'});
-      const data = await res.json();
-      console.log(data);
+      const data = context.params.departmentId;
       if(!data)
       return {
         notFound: true,
@@ -37,9 +33,33 @@ export async function getServerSideProps(context) {
 
 
 export default function editDepartmentForm(props) {
-
     const router = useRouter();
-    const data = props.data.responseMessage;
+    const urlParamsDepartmentId = props.data;
+    const [form] = Form.useForm();
+    const [formData, setDepartmentInformation] = useState([]);
+
+    async function handleGetDepartmentInformation(urlParamsDepartmentId) {
+      const grailsResponse = await getDepartmentInformation(urlParamsDepartmentId);
+      const data = await grailsResponse.json();
+      if (data.status==200) {
+        setDepartmentInformation(data.responseMessage);
+      }
+    }
+
+    useEffect(()=> {
+      handleGetDepartmentInformation(urlParamsDepartmentId);
+    },[]);
+    
+    useEffect(() => {
+      console.log('updating form')
+      form.setFieldsValue({
+        departmentId: formData.departmentid,
+        departmentName: formData.departmentname
+      });
+     }, [formData])
+    
+    
+
 
     async function handleEditDepartment (values) {
         console.log(values);
@@ -50,6 +70,8 @@ export default function editDepartmentForm(props) {
           router.push('/department/showDepartments');
         }
     }
+    
+    
     return (
       <LayoutCustom>
             <Row>
@@ -60,19 +82,15 @@ export default function editDepartmentForm(props) {
             <Row>
                 <Col span={6}></Col>
                 <Col span={12}>
-                    <Form labelCol={{ span: 6 }}
+                    <Form   form={form}
+                            labelCol={{ span: 6 }}
                             wrapperCol={{ span: 14 }}
                             layout="horizontal"
                             onFinish={handleEditDepartment}   
-                            initialValues={
-                              { 
-                              departmentId: data.departmentid,
-                              departmentName: data.departmentname
-                              }
-                          }                        
+                                                    
                     >
                         <Form.Item name="departmentId" label="departmentId" rules={[{ required: true }]} readOnly>
-                            <Input name = "departmentId" id="departmentId" readOnly />
+                            <Input name = "departmentId" id="departmentId" value={formData.departmentid}readOnly />
                         </Form.Item>
 
                         <Form.Item name="departmentName" label="departmentName" rules={[{ required: true }]}>

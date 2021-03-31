@@ -2,15 +2,14 @@ import { Button, Layout, Menu, Breadcrumb, Table, Space, Alert, notification } f
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import LayoutCustom from '../../../components/layout'
-import { deleteEmployee } from '../../../utilitieFunctions/employeeFetchingFunctions'
-
+import { deleteEmployee, getEmployeeInformation, getEmployees } from '../../../utilitieFunctions/employeeFetchingFunctions'
+import {useState, useEffect} from 'react'
 export async function getServerSideProps(context) {
-  console.log('fetching..');
-  console.log(context.params);
+  
   try {
-    const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${context.params.departmentId}` + `.json`, {method: 'GET'});
-    const data = await res.json();
-    console.log(data);
+    const data = context.params.departmentId;
+    //const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${context.params.departmentId}` + `.json`, {method: 'GET'});
+    //const data = await res.json();
     if(!data)
     return {
       notFound: true,
@@ -34,15 +33,38 @@ export async function getServerSideProps(context) {
 
 export default function showEmployees(props) {
   const router = useRouter();
-  const data = props.data.messageResponse;  
-  console.log(data);
-  const currentDepartment = data.departmentInformation;
+  const urlParamsDepartmentId = props.data;  
+  const [tableData, setTableData] = useState([]);
+  console.log(urlParamsDepartmentId);
+  const [currentDepartment, setCurrentDepartment] = useState(0);
+  //const currentDepartment = data.departmentInformation
+  
+
+  async function GetAllEmployees(urlParamsDepartmentId) {
+    const grailsResponse = await getEmployees(urlParamsDepartmentId);
+      const data = await grailsResponse.json();
+      console.log(data);
+      if (data.status==200) {
+        setTableData(data.responseMessage);
+        setCurrentDepartment(data.responseMessage.departmentInformation.departmentid);
+      }
+  }
+  useEffect(()=> {
+    GetAllEmployees(urlParamsDepartmentId);
+    console.log(tableData);
+  },[]);
+
+  useEffect(()=> {
+  },[tableData]);
+
+
 
   async function handleDeleteEmployee(id) {
     const grailsResponse = await deleteEmployee(id);
     const data = await grailsResponse.json();
     if (data.status==200) {
-      router.push('/employee/showEmployees/'+currentDepartment.departmentid);
+      GetAllEmployees(urlParamsDepartmentId);
+      //router.push('/employee/showEmployees/'+currentDepartment.departmentid);
     }
   }
 
@@ -125,7 +147,7 @@ export default function showEmployees(props) {
 
   return (
     <LayoutCustom>
-        <Table rowKey = "employeeid" columns={columns} dataSource={data.allEmployeesofDepartment} /> 
+        <Table rowKey = "employeeid" columns={columns} dataSource={tableData.allEmployeesofDepartment} /> 
     </LayoutCustom>
     
   )

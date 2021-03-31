@@ -8,16 +8,16 @@ import {
   } from 'antd';
 import {useRouter} from 'next/router';
 import LayoutCustom from '../../components/layout'
-import { updateEmployee } from '../../utilitieFunctions/employeeFetchingFunctions'
+import { updateEmployee, getEmployeeInformation } from '../../utilitieFunctions/employeeFetchingFunctions'
 import moment from 'moment';
+import {useState, useEffect} from 'react'
 
 const { Option } = Select;
 
 export async function getServerSideProps(context) {
     console.log('fetching..');
     try {
-      const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployeeForm/${context.params.employeeId}.json`, {method: 'GET'});
-      const data = await res.json();
+      const data = context.params.employeeId;
       if(!data)
       return {
         notFound: true,
@@ -39,8 +39,45 @@ export async function getServerSideProps(context) {
   
   export default function createEmployeeForm(props) {
     const router = useRouter();
-    const data = props.data.responseMessage;
-    console.log(data);
+    const urlParamsEmployeeId = props.data;
+    const [form] = Form.useForm();
+    const [formData, setEmployeeInformation] = useState([]);
+    
+
+    async function handleGetEmployeeInformation(urlParamsEmployeeId) {
+      const grailsResponse = await getEmployeeInformation(urlParamsEmployeeId);
+      const data = await grailsResponse.json();
+      if (data.status==200) {
+        setEmployeeInformation(data.responseMessage);
+        console.log(data.allDepartments);
+      }
+      else if (data.status==400) {
+        setEmployeeInformation([]);
+      }
+    }
+
+    useEffect(()=> {
+      handleGetEmployeeInformation(urlParamsEmployeeId);
+      
+    },[]);
+    
+
+    useEffect(() => {
+      console.log('updating form..')
+      console.log(formData);
+      if(formData.employeeInformation&&formData.allDepartments){
+        form.setFieldsValue({
+          employeeId: formData.employeeInformation.employeeid,
+          firstName: formData.employeeInformation.firstname,
+          lastName: formData.employeeInformation.lastname,
+          afm: formData.employeeInformation.afm,
+          departmentId: formData.employeeInformation.departmentid,
+          dob : moment(formData.employeeInformation.dob, 'DD-MM-YYYY')
+        });
+      }      
+     }, [formData])
+    
+
 
     async function handleUpdateEmployee(values) {
       values.dob = values.dob._d;
@@ -52,7 +89,7 @@ export async function getServerSideProps(context) {
       }
     }
         
-
+    
     return (
       <LayoutCustom>   
         
@@ -64,20 +101,11 @@ export async function getServerSideProps(context) {
         <Row>
           <Col span={6}></Col>
           <Col span={12}>
-            <Form labelCol={{ span: 8 }}
+            <Form form = {form}
+                  labelCol={{ span: 8 }}
                   wrapperCol={{ span: 14 }}
                   layout="horizontal"
-                  onFinish={handleUpdateEmployee}
-                  initialValues={
-                    { 
-                    employeeId: data.employeeInformation.employeeid,
-                    firstName: data.employeeInformation.firstname,
-                    lastName: data.employeeInformation.lastname,
-                    afm: data.employeeInformation.afm,
-                    departmentId: data.employeeInformation.departmentid,
-                    dob : moment(data.employeeInformation.dob, 'DD-MM-YYYY')
-                    }
-                }   
+                  onFinish={handleUpdateEmployee}                    
             >
               <Form.Item name="employeeId" label="Id" type="text"  rules={[{ required: true }]} >
                 <Input  readOnly />
@@ -96,7 +124,7 @@ export async function getServerSideProps(context) {
               </Form.Item>
               <Form.Item name="departmentId" label="Τμήμα"  rules={[{ required: true }]}>
                 <Select>
-                  {data.allDepartments.map((value) => (
+                  {formData.allDepartments?.map((value) => (
                     <Option value={value.departmentid}>{value.departmentname}</Option>
                   ))}
                 </Select>
@@ -117,11 +145,9 @@ export async function getServerSideProps(context) {
           <Col span={8}></Col>
           <Col span={8}></Col>
         </Row>
-        
-          
-          
-        
-      
     </LayoutCustom>
     )
   }
+
+
+  

@@ -7,6 +7,7 @@ export async function createEmployee(props){
         'Accept':'application/json',
         'Content-type':'application/json'
       },
+      credentials:'include',
       body: JSON.stringify({
         firstName: props.firstName,
         lastName: props.lastName,
@@ -30,6 +31,7 @@ export async function updateEmployee(props){
         'Accept':'application/json',
         'Content-type':'application/json'
       },
+      credentials:'include',
       body: JSON.stringify({
         employeeId: props.employeeId,
         firstName: props.firstName,
@@ -54,6 +56,7 @@ export async function deleteEmployee(employeeId){
         'Accept':'application/json',
         'Content-type':'application/json'
       },
+      credentials:'include',
       body: JSON.stringify({
           employeeId: employeeId
       })
@@ -64,11 +67,38 @@ export async function deleteEmployee(employeeId){
   }
 }
 
+export async function getEmployees(departmentId){
+  console.log('Getting employees..')
+  try{
+    const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${departmentId}.json`, {
+      method: 'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json'
+      },
+      credentials:'include'
+    });
+    return res;
+  }catch(e){
+    console.log(e)
+  }
+}
 
-/*
-        get "/employeeResponder/getEmployees/(.$format)"(controller: 'employeeResponder', action: 'getEmployees')
-        post "/employeeResponder/postEmployee(.$format)"(controller: 'employeeResponder', action: 'postEmployees')
-        put "/employeeResponder/updateEmployee(.$format)"(controller: 'employeeResponder', action: 'updateEmployee')
-        delete "/employeeResponder/deleteEmployee(.$format)"(controller: 'employeeResponder', action: 'deleteEmployee')
-        get "/employeeResponder/updateEmployeeForm(.$format)"(controller: 'employeeResponder', action: 'updateEmployeeForm')
-*/
+export async function getEmployeeInformation(employeeId){
+  console.log('Getting employee information..')
+  try{
+    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployeeForm/${employeeId}.json`, {
+      method: 'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json'
+      },
+      credentials:'include'
+    });
+    return res;
+  }catch(e){
+    console.log(e)
+  }
+}
+
+

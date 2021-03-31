@@ -27,6 +27,7 @@ export async function updateDepartment(props){
           'Accept':'application/json',
           'Content-type':'application/json'
         },
+        credentials:'include',
         body: JSON.stringify({
           departmentId: props.departmentId,
           departmentName: props.departmentName
@@ -39,7 +40,7 @@ export async function updateDepartment(props){
 }
 
 export async function deleteDepartment(departmentId){
-    console.log('Creating department..')
+    console.log('Deleting department..')
     try{
       const res = await fetch(`http://localhost:8080/departmentResponder/deleteDepartment.json`, {
         method: 'DELETE',
@@ -47,6 +48,7 @@ export async function deleteDepartment(departmentId){
           'Accept':'application/json',
           'Content-type':'application/json'
         },
+        credentials:'include',
         body: JSON.stringify({
             departmentId: departmentId
         })
@@ -57,8 +59,36 @@ export async function deleteDepartment(departmentId){
     }
 }
 
-/*
-        post "/departmentResponder/postDepartment(.$format)"(controller: 'departmentResponder', action:'postDepartment')
-        put "/departmentResponder/updateDepartment(.$format)"(controller: 'departmentResponder', action: 'updateDepartment')
-        delete "/departmentResponder/deleteDepartment(.$format)"(controller: 'departmentResponder', action: 'deleteDepartment')
-*/
+export async function getDepartments(){
+  console.log('Getting departments..')
+  try{
+    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`, {
+      method: 'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json',
+      },
+      credentials:'include'        
+    });
+    return res;
+  }catch(e){
+    console.log(e)
+  }
+}
+
+export async function getDepartmentInformation(departmentId){
+  try{
+    const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartmentForm/${departmentId}.json`, {
+      method: 'GET',
+      headers:{
+        'Accept':'application/json',
+        'Content-type':'application/json',
+      },
+      credentials:'include'        
+    });
+    return res;
+  }catch(e){
+    console.log(e)
+  }
+}
+
