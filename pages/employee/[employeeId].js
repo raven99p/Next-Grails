@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
         }  
 } 
   
-  export default function createEmployeeForm(props) {
+export default function createEmployeeForm(props) {
     const router = useRouter();
     const urlParamsEmployeeId = props.data;
     const [form] = Form.useForm();
@@ -49,7 +49,6 @@ export async function getServerSideProps(context) {
       const data = await grailsResponse.json();
       if (data.status==200) {
         setEmployeeInformation(data.responseMessage);
-        console.log(data.allDepartments);
       }
       else if (data.status==400) {
         setEmployeeInformation([]);
@@ -64,7 +63,6 @@ export async function getServerSideProps(context) {
 
     useEffect(() => {
       console.log('updating form..')
-      console.log(formData);
       if(formData.employeeInformation&&formData.allDepartments){
         form.setFieldsValue({
           employeeId: formData.employeeInformation.employeeid,
@@ -81,7 +79,6 @@ export async function getServerSideProps(context) {
 
     async function handleUpdateEmployee(values) {
       values.dob = values.dob._d;
-      console.log(values);
       const grailsResponse = await updateEmployee(values);
       const data = await grailsResponse.json();
       if (data.status==200) {
@@ -92,7 +89,6 @@ export async function getServerSideProps(context) {
     
     return (
       <LayoutCustom>   
-        
         <Row>
           <Col span={8}></Col>
           <Col span={8}><br/></Col>

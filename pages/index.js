@@ -7,15 +7,11 @@ import { Form,
   Row,Col,
   notification
 } from 'antd'
-import jwt_decode from "jwt-decode";
 import Link from 'next/link'
-import React, { useState } from 'react';
-import { verification, logout } from '../utilitieFunctions/authenticationFetchingFunctions'
+import { verification} from '../utilitieFunctions/authenticationFetchingFunctions'
 import {useRouter} from 'next/router';
 const { Header, Content, Footer } = Layout;
-const content = {
-  marginTop: '100px',
-}
+
 
 export default function login() {
 
@@ -24,7 +20,6 @@ export default function login() {
   async function handleLogin (values) {
     const grailsResponse = await verification(values);
     const data = await grailsResponse.json();
-    console.log(data);
     if (data.status==200) {
       router.push('/department/showDepartments')
     }else {
@@ -58,12 +53,9 @@ export default function login() {
 
   return (
     <Layout className="layout">
-
       <title>Postem</title>
-    
     <Header>
       <div className="logo" />
-      
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
         <Menu.Item key="1">
           <Link href="/">
@@ -73,9 +65,7 @@ export default function login() {
         <div style={{float:'right'}}>
           Δεν είστε συνδεδεμένος.
         </div>
-
       </Menu>
-      
     </Header>
     <Content style={{ padding: '0 50px' }}>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -132,20 +122,16 @@ export default function login() {
         </Col>
         <Col span={8}></Col>
       </Row>
-
         <Row>
           <Col span={8}></Col>
           <Col span={8}></Col>
           <Col span={8}></Col>
         </Row>
       </Breadcrumb.Item>
-
-
       </Breadcrumb>
     </Content>
     <Footer style={{ textAlign: 'center' }}>Postem ©2021</Footer>
   </Layout>
-    
   )
 }
 

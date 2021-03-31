@@ -54,10 +54,3 @@ export async function getSessionVariable(){
     console.log(e)
   }
 }
-
-
-
-/*
-get "/authenticationResponder/verify(.$format)"(controller:'authenticationResponder', action: 'verify')
-get "/authenticationResponder/logout(.$format)"(controller:'authenticationResponder', action: 'logout')
-*/

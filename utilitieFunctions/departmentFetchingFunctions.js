@@ -19,7 +19,7 @@ export async function createDepartment(props){
 }
 
 export async function updateDepartment(props){
-    console.log('Creating department..')
+    console.log('Updating department..')
     try{
       const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartment.json`, {
         method: 'PUT',

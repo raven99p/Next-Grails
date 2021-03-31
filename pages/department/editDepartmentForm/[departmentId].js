@@ -62,10 +62,8 @@ export default function editDepartmentForm(props) {
 
 
     async function handleEditDepartment (values) {
-        console.log(values);
         const grailsResponse = await updateDepartment(values);
         const data = await grailsResponse.json();
-        console.log(data);
         if (data.status==200) {
           router.push('/department/showDepartments');
         }
@@ -86,8 +84,7 @@ export default function editDepartmentForm(props) {
                             labelCol={{ span: 6 }}
                             wrapperCol={{ span: 14 }}
                             layout="horizontal"
-                            onFinish={handleEditDepartment}   
-                                                    
+                            onFinish={handleEditDepartment}                    
                     >
                         <Form.Item name="departmentId" label="departmentId" rules={[{ required: true }]} readOnly>
                             <Input name = "departmentId" id="departmentId" value={formData.departmentid}readOnly />

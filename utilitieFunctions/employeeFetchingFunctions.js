@@ -1,5 +1,5 @@
 export async function createEmployee(props){
-  console.log('Creating department..')
+  console.log('Creating employee..')
   try{
     const res = await fetch(`http://localhost:8080/employeeResponder/postEmployee.json`, {
       method: 'POST',
@@ -23,7 +23,7 @@ export async function createEmployee(props){
 }
 
 export async function updateEmployee(props){
-  console.log('Creating department..')
+  console.log('Updating employee..')
   try{
     const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployee.json`, {
       method: 'PUT',
@@ -48,7 +48,7 @@ export async function updateEmployee(props){
 }
 
 export async function deleteEmployee(employeeId){
-  console.log('Creating department..')
+  console.log('Deleting employee..')
   try{
     const res = await fetch(`http://localhost:8080/employeeResponder/deleteEmployee.json`, {
       method: 'DELETE',

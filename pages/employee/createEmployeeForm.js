@@ -23,7 +23,6 @@ export default function createEmployeeForm() {
   async function getAllDepartments () {
     const grailsResponse = await getDepartments();
     const data = await grailsResponse.json();
-    console.log(data);
     if (data.status==200) {
       setSelectData(data.responseMessage);
     } else if (data.status==400) {
@@ -33,7 +32,6 @@ export default function createEmployeeForm() {
 
   useEffect(()=> {
     getAllDepartments();
-    console.log(selectData);
   },[]);
 
     async function handleCreateEmployee(values) {
@@ -48,7 +46,6 @@ export default function createEmployeeForm() {
 
     return (
       <LayoutCustom>   
-        
         <Row>
           <Col span={8}></Col>
           <Col span={8}><br/></Col>
@@ -97,11 +94,6 @@ export default function createEmployeeForm() {
           <Col span={8}></Col>
           <Col span={8}></Col>
         </Row>
-        
-          
-          
-        
-      
     </LayoutCustom>
     )
   }

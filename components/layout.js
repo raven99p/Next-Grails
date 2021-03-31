@@ -1,22 +1,35 @@
 import { Layout, Menu, Breadcrumb, Button} from 'antd';
 import Link from 'next/link'
-import { Router, useRouter } from 'next/router';
 import { getSessionVariable, logout} from '../utilitieFunctions/authenticationFetchingFunctions'
 const { Header, Content, Footer } = Layout;
+import {useState, useEffect} from 'react'
+import {useRouter} from 'next/router';
 
 export default function LayoutCustom({ children}) {
   const router = useRouter();
-
+  const [session, setSession] = useState('');
   async function handleLogout() {
     const grailsResponse = await logout();
     const data = await grailsResponse.json();
     console.log(data);
     if (data.status==200) {
+      setSession('');
       router.push('/');
     } else if (data.status==400) {
       return [];
     }
   }  
+
+  async function Session() {
+    const grailsResponse = await getSessionVariable();
+    const data = await grailsResponse.json();
+    setSession(data.sessionVariable);
+  }
+
+  useEffect(()=> {
+    Session();
+  },[]);
+
 
 
   return (
@@ -44,7 +57,7 @@ export default function LayoutCustom({ children}) {
           </Link>
         </Menu.Item>
         <Menu.Item key="4" style={{float: 'right'}}>
-          <a> Συνδεδεμένος ως  </a>
+          <a> Συνδεδεμένος ως  {session}</a>
         </Menu.Item>
         <Menu.Item key="5" style={{float: 'right'}}>
           <Button type="link" onClick={handleLogout}>Αποσύνδεση </Button>          

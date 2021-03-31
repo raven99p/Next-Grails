@@ -8,39 +8,9 @@ import LayoutCustom from '../../components/layout'
 import { deleteDepartment, getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions'
 import {useRouter} from 'next/router';
 import {useState, useEffect} from 'react'
-import { useFrameState } from 'antd/lib/form/util';
 const content = {
   marginTop: '100px',
 }
-/*
-export async function getServerSideProps() {
-  
-  console.log('fetching..');
-  try {
-    const grailsResponse = await getDepartments();
-    const data = await grailsResponse.json();
-    console.log(data);
-    //const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`,  {method: 'GET'});
-    //const data = await res.json();
-    if(!data)
-    return {
-      notFound: true,
-    }
-    return {
-      props:{
-        data,
-      },
-    }}catch(e) {
-        console.log(e);
-        const error = true
-        return {
-          props:{
-            error,
-          },
-        }
-      }  
-}*/
-
 
 export default function showDepartments() {
 
@@ -50,7 +20,6 @@ export default function showDepartments() {
   async function getAllDepartments () {
     const grailsResponse = await getDepartments();
     const data = await grailsResponse.json();
-    console.log(data);
     if (data.status==200) {
       setTableData(data.responseMessage);
     } else if (data.status==400) {
@@ -63,13 +32,9 @@ export default function showDepartments() {
     console.log(tableData);
   },[]);
 
-  
-
   async function handleDeleteDepartment (departmentId) {
-    console.log(departmentId);
     const grailsResponse = await deleteDepartment(departmentId);
     const data = await grailsResponse.json();
-    console.log(data);
     if (data.status==200) {
       getAllDepartments();
       router.push('/department/showDepartments');
@@ -148,13 +113,10 @@ export default function showDepartments() {
     },
   ];
 
-
-
   return (
     <LayoutCustom>
         <Table rowKey = "departmentid" columns={columns} dataSource={tableData} />
     </LayoutCustom>
-    
   )
 }
 
