@@ -18,7 +18,7 @@ export default function createDepartmentForm() {
         if (data.status==200) {
           router.push('/department/showDepartments');
         } else if (data.status==400) {
-            router.push('/error')
+            router.push('/error');
         }
     }
     return (

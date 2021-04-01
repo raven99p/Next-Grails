@@ -53,7 +53,7 @@ export default function showEmployees(props) {
     if (data.status==200) {
       GetAllEmployees(urlParamsDepartmentId);
     } else if (data.status==400){
-      router.push('/error')
+      router.push('/error');
     }
   }
 

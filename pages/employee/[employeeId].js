@@ -52,7 +52,7 @@ export default function createEmployeeForm(props) {
       }
       else if (data.status==400) {
         setEmployeeInformation([]);
-        router.push('/error')
+        router.push('/error');
       }
     }
 
