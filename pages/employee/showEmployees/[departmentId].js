@@ -52,6 +52,8 @@ export default function showEmployees(props) {
     const data = await grailsResponse.json();
     if (data.status==200) {
       GetAllEmployees(urlParamsDepartmentId);
+    } else if (data.status==400){
+      router.push('/error')
     }
   }
 

@@ -24,6 +24,7 @@ export default function createEmployeeForm() {
       setSelectData(data.responseMessage);
     } else if (data.status==400) {
       setSelectData([]);
+      router.push('/error');
     }
   }
 

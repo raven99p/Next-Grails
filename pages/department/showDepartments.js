@@ -22,6 +22,7 @@ export default function showDepartments() {
       setTableData(data.responseMessage);
     } else if (data.status==400) {
       setTableData([]);
+      router.push('/error')
     }
   }
   
