@@ -1,11 +1,9 @@
-import { Button, Layout, Menu, Breadcrumb, Table, Space, Alert, notification } from 'antd';
+import { Button, Table, Space, notification } from 'antd';
 import {useRouter} from 'next/router';
-import Link from 'next/link';
-import LayoutCustom from '../../../components/layout'
-import { deleteEmployee, getEmployeeInformation, getEmployees } from '../../../utilitieFunctions/employeeFetchingFunctions'
-import {useState, useEffect} from 'react'
+import LayoutCustom from '../../../components/layout';
+import { deleteEmployee, getEmployees } from '../../../utilitieFunctions/employeeFetchingFunctions';
+import {useState, useEffect} from 'react';
 export async function getServerSideProps(context) {
-  
   try {
     const data = context.params.departmentId;
     if(!data)
@@ -25,7 +23,6 @@ export async function getServerSideProps(context) {
           },
         }
       }
-    
 }
 
 
@@ -42,14 +39,13 @@ export default function showEmployees(props) {
         setTableData(data.responseMessage);
       }
   }
+  
   useEffect(()=> {
     GetAllEmployees(urlParamsDepartmentId);
   },[]);
 
   useEffect(()=> {
   },[tableData]);
-
-
 
   async function handleDeleteEmployee(id) {
     const grailsResponse = await deleteEmployee(id);

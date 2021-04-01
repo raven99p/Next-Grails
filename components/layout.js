@@ -1,8 +1,8 @@
 import { Layout, Menu, Breadcrumb, Button} from 'antd';
-import Link from 'next/link'
-import { getSessionVariable, logout} from '../utilitieFunctions/authenticationFetchingFunctions'
+import Link from 'next/link';
+import { getSessionVariable, logout} from '../utilitieFunctions/authenticationFetchingFunctions';
 const { Header, Content, Footer } = Layout;
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
 export default function LayoutCustom({ children}) {
@@ -11,7 +11,6 @@ export default function LayoutCustom({ children}) {
   async function handleLogout() {
     const grailsResponse = await logout();
     const data = await grailsResponse.json();
-    console.log(data);
     if (data.status==200) {
       setSession('');
       router.push('/');
@@ -29,7 +28,6 @@ export default function LayoutCustom({ children}) {
   useEffect(()=> {
     Session();
   },[]);
-
 
 
   return (
@@ -71,7 +69,7 @@ export default function LayoutCustom({ children}) {
         </Breadcrumb.Item> 
       </Breadcrumb>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Postem ©2021 </Footer>
+    <Footer style={{ textAlign: 'center',position:'absolute',bottom:"0",width:"100%"}}>Postem ©2021</Footer>
   </Layout>
   )
 }

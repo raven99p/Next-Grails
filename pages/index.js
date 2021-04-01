@@ -130,7 +130,7 @@ export default function login() {
       </Breadcrumb.Item>
       </Breadcrumb>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Postem ©2021</Footer>
+    <Footer style={{ textAlign: 'center',position:'absolute',bottom:"0",width:"100%"}}>Postem ©2021</Footer>
   </Layout>
   )
 }

@@ -7,18 +7,15 @@ import {
     Row,Col
   } from 'antd';
 import {useRouter} from 'next/router';
-import LayoutCustom from '../../components/layout'
-import { createEmployee } from '../../utilitieFunctions/employeeFetchingFunctions'
-import { getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions'
-import {useState, useEffect} from 'react'
+import LayoutCustom from '../../components/layout';
+import { createEmployee } from '../../utilitieFunctions/employeeFetchingFunctions';
+import { getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions';
+import {useState, useEffect} from 'react';
 const { Option } = Select;
-
-
-
   
 export default function createEmployeeForm() {
-    const router = useRouter();
-    const [selectData, setSelectData] = useState([]);
+  const router = useRouter();
+  const [selectData, setSelectData] = useState([]);
 
   async function getAllDepartments () {
     const grailsResponse = await getDepartments();

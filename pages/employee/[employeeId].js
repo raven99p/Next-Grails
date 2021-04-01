@@ -7,10 +7,10 @@ import {
     Row,Col
   } from 'antd';
 import {useRouter} from 'next/router';
-import LayoutCustom from '../../components/layout'
-import { updateEmployee, getEmployeeInformation } from '../../utilitieFunctions/employeeFetchingFunctions'
+import LayoutCustom from '../../components/layout';
+import { updateEmployee, getEmployeeInformation } from '../../utilitieFunctions/employeeFetchingFunctions';
 import moment from 'moment';
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react';
 
 const { Option } = Select;
 
@@ -57,10 +57,8 @@ export default function createEmployeeForm(props) {
 
     useEffect(()=> {
       handleGetEmployeeInformation(urlParamsEmployeeId);
-      
     },[]);
     
-
     useEffect(() => {
       console.log('updating form..')
       if(formData.employeeInformation&&formData.allDepartments){
@@ -75,8 +73,6 @@ export default function createEmployeeForm(props) {
       }      
      }, [formData])
     
-
-
     async function handleUpdateEmployee(values) {
       values.dob = values.dob._d;
       const grailsResponse = await updateEmployee(values);
@@ -85,7 +81,6 @@ export default function createEmployeeForm(props) {
         router.push('/employee/showEmployees/'+values.departmentId);
       }
     }
-        
     
     return (
       <LayoutCustom>   

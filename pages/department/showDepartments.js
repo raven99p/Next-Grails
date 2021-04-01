@@ -3,14 +3,12 @@ import {
   Table,
   Space,
   notification
-} from 'antd'
-import LayoutCustom from '../../components/layout'
-import { deleteDepartment, getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions'
+} from 'antd';
+import LayoutCustom from '../../components/layout';
+import { deleteDepartment, getDepartments } from '../../utilitieFunctions/departmentFetchingFunctions';
 import {useRouter} from 'next/router';
-import {useState, useEffect} from 'react'
-const content = {
-  marginTop: '100px',
-}
+import {useState, useEffect} from 'react';
+
 
 export default function showDepartments() {
 

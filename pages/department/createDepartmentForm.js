@@ -4,9 +4,9 @@ import {
     Button, 
     Row,Col
   } from 'antd';
-import LayoutCustom from '../../components/layout'
-import {useRouter} from 'next/router'
-import { createDepartment } from '../../utilitieFunctions/departmentFetchingFunctions'
+import LayoutCustom from '../../components/layout';
+import {useRouter} from 'next/router';
+import { createDepartment } from '../../utilitieFunctions/departmentFetchingFunctions';
 export default function createDepartmentForm() {
 
     const router = useRouter();
