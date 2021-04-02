@@ -46,7 +46,11 @@ export default function createEmployeeForm() {
       <LayoutCustom>   
         <Row>
           <Col span={8}></Col>
-          <Col span={8}><br/></Col>
+          <Col span={8}>
+            <br/>
+            <h1>Δημιουργία υπαλλήλου</h1>
+            <br/>
+          </Col>
           <Col span={8}></Col>
         </Row>
         <Row>
@@ -56,6 +60,9 @@ export default function createEmployeeForm() {
                   wrapperCol={{ span: 14 }}
                   layout="horizontal"
                   onFinish={handleCreateEmployee}
+                  style= {
+                    {height:"100vh"}
+                  }  
             >
               <Form.Item name="firstName" label="Όνομα" type="text" rules={[{ required: true }]} >
                 <Input maxLength="50" />

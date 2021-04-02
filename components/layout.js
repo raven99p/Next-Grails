@@ -5,7 +5,7 @@ const { Header, Content, Footer } = Layout;
 import {useState, useEffect} from 'react';
 import {useRouter} from 'next/router';
 
-export default function LayoutCustom({ children}) {
+export default function LayoutCustom({ children }) {
   const router = useRouter();
   const [session, setSession] = useState('');
   async function handleLogout() {
@@ -38,7 +38,7 @@ export default function LayoutCustom({ children}) {
     <Header>
       <div className="logo" />
       
-      <Menu theme="dark" mode="horizontal">
+      <Menu theme="dark" mode="horizontal" >
         <Menu.Item key="1">
           <Link href="/department/showDepartments">
                 <a> Postem </a>
@@ -63,7 +63,7 @@ export default function LayoutCustom({ children}) {
       </Menu>
     </Header>
     <Content style={{ padding: '0 50px' }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
+      <Breadcrumb style={{ margin: '16px 0' , height:"100vh"  }}>
         <Breadcrumb.Item>
           {children}
         </Breadcrumb.Item> 

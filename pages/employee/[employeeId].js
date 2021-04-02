@@ -87,7 +87,11 @@ export default function createEmployeeForm(props) {
       <LayoutCustom>   
         <Row>
           <Col span={8}></Col>
-          <Col span={8}><br/></Col>
+          <Col span={8}>
+            <br/>
+            <h1>Ενημέρωση υπαλλήλου</h1>
+            <br/>
+            </Col>
           <Col span={8}></Col>
         </Row>
         <Row>
@@ -97,7 +101,10 @@ export default function createEmployeeForm(props) {
                   labelCol={{ span: 8 }}
                   wrapperCol={{ span: 14 }}
                   layout="horizontal"
-                  onFinish={handleUpdateEmployee}                    
+                  onFinish={handleUpdateEmployee}
+                  style= {
+                    {height:"100vh"}
+                  }                    
             >
               <Form.Item name="employeeId" label="Id" type="text"  rules={[{ required: true }]} >
                 <Input  readOnly />

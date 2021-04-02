@@ -22,10 +22,14 @@ export default function createDepartmentForm() {
         }
     }
     return (
-      <LayoutCustom>
+      <LayoutCustom >
             <Row>
                 <Col span={8}></Col>
-                <Col span={8}><br/></Col>
+                <Col span={8}>
+                    <br/>
+                    <h1>Δημιουργία τμήματος</h1>
+                    <br/>
+                </Col>
                 <Col span={8}></Col>
             </Row>
             <Row>
@@ -35,6 +39,9 @@ export default function createDepartmentForm() {
                             wrapperCol={{ span: 14 }}
                             layout="horizontal"
                             onFinish={handleCreateDepartment}
+                            style= {
+                                {height:"100vh"}
+                            }
                     >
                         <Form.Item name="departmentName" label="Ονομα" rules={[{ required: true }]}>
                             <Input name = "departmentName" id="departmentName" maxLength="10"/>

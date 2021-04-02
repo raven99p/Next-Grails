@@ -71,7 +71,11 @@ export default function editDepartmentForm(props) {
       <LayoutCustom>
             <Row>
                 <Col span={8}></Col>
-                <Col span={8}><br/></Col>
+                <Col span={8}>
+                  <br/>
+                  <h1>Ενημέρωση τμήματος</h1>
+                  <br/>
+                  </Col>
                 <Col span={8}></Col>
             </Row>
             <Row>
@@ -81,7 +85,10 @@ export default function editDepartmentForm(props) {
                             labelCol={{ span: 6 }}
                             wrapperCol={{ span: 14 }}
                             layout="horizontal"
-                            onFinish={handleEditDepartment}                    
+                            onFinish={handleEditDepartment} 
+                            style= {
+                              {height:"100vh"}
+                            }                   
                     >
                         <Form.Item name="departmentId" label="departmentId" rules={[{ required: true }]} readOnly>
                             <Input name = "departmentId" id="departmentId" value={formData.departmentid}readOnly />
