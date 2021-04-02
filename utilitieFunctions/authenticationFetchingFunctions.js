@@ -1,7 +1,7 @@
 export async function verification(props){
   console.log('verifying user..')
   try{
-    const res = await fetch(`http://localhost:8080/authenticationResponder/verify.json`, {
+    const res = await fetch(`http://localhost:8080/authenticationResponder/verify`, {
       method: 'POST',
       headers:{
         'Accept':'application/json',
@@ -24,7 +24,7 @@ export async function verification(props){
 export async function logout(){
   console.log('Loging out user..')
   try{
-    const res = await fetch(`http://localhost:8080/authenticationResponder/logout.json`, {
+    const res = await fetch(`http://localhost:8080/authenticationResponder/logout`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',
@@ -41,7 +41,7 @@ export async function logout(){
 export async function getSessionVariable(){
   console.log('Fetching Session..')
   try{
-    const res = await fetch(`http://localhost:8080/authenticationResponder/getSessionVariable.json`, {
+    const res = await fetch(`http://localhost:8080/authenticationResponder/getSessionVariable`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',

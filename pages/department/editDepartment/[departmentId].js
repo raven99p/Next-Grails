@@ -20,15 +20,16 @@ export async function getServerSideProps(context) {
         props:{
           data,
         },
-      }}catch(e) {
-          console.log(e);
-          const error = true
-          return {
-            props:{
-              error,
-            },
-          }
-        }
+      }
+    }catch(e) {
+      console.log(e);
+      const error = true
+      return {
+        props:{
+          error,
+        },
+      }
+    }
 }
 
 
@@ -58,9 +59,6 @@ export default function editDepartmentForm(props) {
       });
      }, [formData])
     
-    
-
-
     async function handleEditDepartment (values) {
         const grailsResponse = await updateDepartment(values);
         const data = await grailsResponse.json();
@@ -68,7 +66,6 @@ export default function editDepartmentForm(props) {
           router.push('/department/showDepartments');
         }
     }
-    
     
     return (
       <LayoutCustom>

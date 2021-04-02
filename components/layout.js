@@ -45,12 +45,12 @@ export default function LayoutCustom({ children}) {
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link href="/employee/createEmployeeForm">
+          <Link href="/employee/createEmployee">
                 <a> Δημιουργία υπαλλήλου </a>
           </Link>
         </Menu.Item>
         <Menu.Item key="3">
-          <Link href="/department/createDepartmentForm">
+          <Link href="/department/createDepartment">
                 <a> Δημιουργία τμήματος </a>
           </Link>
         </Menu.Item>

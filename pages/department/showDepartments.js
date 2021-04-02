@@ -23,6 +23,8 @@ export default function showDepartments() {
     } else if (data.status==400) {
       setTableData([]);
       router.push('/error');
+    } else {
+      router.push('/error');
     }
   }
   
@@ -101,7 +103,7 @@ export default function showDepartments() {
           <Button size="small" type="primary" onClick={()=>router.push('/employee/showEmployees/' + text.departmentid)}>
             view
           </Button>
-          <Button size="small" type="primary" onClick={()=>router.push('/department/editDepartmentForm/' + text.departmentid)}>
+          <Button size="small" type="primary" onClick={()=>router.push('/department/editDepartment/' + text.departmentid)}>
             Edit
           </Button>
           <Button size="small" type="primary" onClick={()=>openNotificationDelete(text.departmentid)}>

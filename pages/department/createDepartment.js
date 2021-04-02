@@ -36,7 +36,7 @@ export default function createDepartmentForm() {
                             layout="horizontal"
                             onFinish={handleCreateDepartment}
                     >
-                        <Form.Item name="departmentName" label="departmentName" rules={[{ required: true }]}>
+                        <Form.Item name="departmentName" label="Ονομα" rules={[{ required: true }]}>
                             <Input name = "departmentName" id="departmentName" maxLength="10"/>
                         </Form.Item>
                         

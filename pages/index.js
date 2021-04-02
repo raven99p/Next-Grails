@@ -80,6 +80,9 @@ export default function login() {
           <Col span={8}>
           <Form
             onFinish = {handleLogin}
+            style= {
+              {height:"100vh"}
+            }
           >
             <Form.Item
               name="username"
