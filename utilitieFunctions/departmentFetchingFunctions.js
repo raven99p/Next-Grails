@@ -1,7 +1,7 @@
 export async function createDepartment(props){
     console.log('Creating department..')
     try{
-      const res = await fetch(`http://localhost:8080/departmentResponder/postDepartment.json`, {
+      const res = await fetch(`http://localhost:8080/departmentResponder/postDepartment`, {
         method: 'POST',
         headers:{
           'Accept':'application/json',
@@ -21,7 +21,7 @@ export async function createDepartment(props){
 export async function updateDepartment(props){
     console.log('Updating department..')
     try{
-      const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartment.json`, {
+      const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartment`, {
         method: 'PUT',
         headers:{
           'Accept':'application/json',
@@ -42,7 +42,7 @@ export async function updateDepartment(props){
 export async function deleteDepartment(departmentId){
     console.log('Deleting department..')
     try{
-      const res = await fetch(`http://localhost:8080/departmentResponder/deleteDepartment.json`, {
+      const res = await fetch(`http://localhost:8080/departmentResponder/deleteDepartment`, {
         method: 'DELETE',
         headers:{
           'Accept':'application/json',
@@ -62,7 +62,7 @@ export async function deleteDepartment(departmentId){
 export async function getDepartments(){
   console.log('Getting departments..')
   try{
-    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments.json`, {
+    const res = await fetch(`http://localhost:8080/departmentResponder/getDepartments`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',
@@ -78,7 +78,7 @@ export async function getDepartments(){
 
 export async function getDepartmentInformation(departmentId){
   try{
-    const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartmentForm/${departmentId}.json`, {
+    const res = await fetch(`http://localhost:8080/departmentResponder/updateDepartmentForm/${departmentId}`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',

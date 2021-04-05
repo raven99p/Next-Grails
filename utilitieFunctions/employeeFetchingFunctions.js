@@ -1,7 +1,7 @@
 export async function createEmployee(props){
   console.log('Creating employee..')
   try{
-    const res = await fetch(`http://localhost:8080/employeeResponder/postEmployee.json`, {
+    const res = await fetch(`http://localhost:8080/employeeResponder/postEmployee`, {
       method: 'POST',
       headers:{
         'Accept':'application/json',
@@ -25,7 +25,7 @@ export async function createEmployee(props){
 export async function updateEmployee(props){
   console.log('Updating employee..')
   try{
-    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployee.json`, {
+    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployee`, {
       method: 'PUT',
       headers:{
         'Accept':'application/json',
@@ -50,7 +50,7 @@ export async function updateEmployee(props){
 export async function deleteEmployee(employeeId){
   console.log('Deleting employee..')
   try{
-    const res = await fetch(`http://localhost:8080/employeeResponder/deleteEmployee.json`, {
+    const res = await fetch(`http://localhost:8080/employeeResponder/deleteEmployee`, {
       method: 'DELETE',
       headers:{
         'Accept':'application/json',
@@ -70,7 +70,7 @@ export async function deleteEmployee(employeeId){
 export async function getEmployees(departmentId){
   console.log('Getting employees..')
   try{
-    const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${departmentId}.json`, {
+    const res = await fetch(`http://localhost:8080/employeeResponder/getEmployees/${departmentId}`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',
@@ -87,7 +87,7 @@ export async function getEmployees(departmentId){
 export async function getEmployeeInformation(employeeId){
   console.log('Getting employee information..')
   try{
-    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployeeForm/${employeeId}.json`, {
+    const res = await fetch(`http://localhost:8080/employeeResponder/updateEmployeeForm/${employeeId}`, {
       method: 'GET',
       headers:{
         'Accept':'application/json',
