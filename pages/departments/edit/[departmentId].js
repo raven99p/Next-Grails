@@ -44,6 +44,10 @@ export default function editDepartmentForm(props) {
       const data = await grailsResponse.json();
       if (data.status==200) {
         setDepartmentInformation(data.responseMessage);
+      } else if (grailsResponse.status==401) {
+        router.push('/');
+      } else if (data.status==404) {
+        router.push('/error');
       }
     }
 
@@ -64,6 +68,8 @@ export default function editDepartmentForm(props) {
         const data = await grailsResponse.json();
         if (data.status==200) {
           router.push('/departments');
+        } else if (data.status==400) {
+          router.push('/error')
         }
     }
     

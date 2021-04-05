@@ -37,6 +37,10 @@ export default function showEmployees(props) {
       const data = await grailsResponse.json();
       if (data.status==200) {
         setTableData(data.responseMessage);
+      } else if (grailsResponse.status==401) {
+        router.push('/');
+      } else if (data.status==404) {
+        router.push('/error');
       }
   }
   

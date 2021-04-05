@@ -23,8 +23,8 @@ export default function showDepartments() {
     } else if (data.status==400) {
       setTableData([]);
       router.push('/error');
-    } else {
-      router.push('/error');
+    } else if (grailsResponse.status==401) {
+      router.push('/');
     }
   }
   

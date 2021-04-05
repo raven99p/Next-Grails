@@ -22,9 +22,11 @@ export default function createEmployeeForm() {
     const data = await grailsResponse.json();
     if (data.status==200) {
       setSelectData(data.responseMessage);
-    } else if (data.status==400) {
+    } else if (data.status==404) {
       setSelectData([]);
       router.push('/error');
+    } else if (grailsResponse.status==401) {
+      router.push('/');
     }
   }
 
@@ -38,6 +40,8 @@ export default function createEmployeeForm() {
       const data = await grailsResponse.json();
       if (data.status==200) {
         router.push('/departments/'+values.departmentId);
+      } else if (data.status==400){
+        router.push('/error')
       }
     }
     
