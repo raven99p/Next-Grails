@@ -45,13 +45,13 @@ export default function createEmployeeForm() {
     return (
       <LayoutCustom>   
         <Row>
-          <Col span={8}></Col>
-          <Col span={8}>
+          <Col span={10}></Col>
+          <Col span={6}>
             <br/>
             <h1>Δημιουργία υπαλλήλου</h1>
             <br/>
           </Col>
-          <Col span={8}></Col>
+          <Col span={10}></Col>
         </Row>
         <Row>
           <Col span={6}></Col>
@@ -95,9 +95,9 @@ export default function createEmployeeForm() {
       </Row>
 
         <Row>
-          <Col span={8}></Col>
-          <Col span={8}></Col>
-          <Col span={8}></Col>
+          <Col span={10}></Col>
+          <Col span={6}></Col>
+          <Col span={10}></Col>
         </Row>
     </LayoutCustom>
     )

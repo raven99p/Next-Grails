@@ -90,11 +90,11 @@ export default function editDepartmentForm(props) {
                               {height:"100vh"}
                             }                   
                     >
-                        <Form.Item name="departmentId" label="departmentId" rules={[{ required: true }]} readOnly>
+                        <Form.Item name="departmentId" label="Κωδικός" rules={[{ required: true }]} readOnly>
                             <Input name = "departmentId" id="departmentId" value={formData.departmentid}readOnly />
                         </Form.Item>
 
-                        <Form.Item name="departmentName" label="departmentName" rules={[{ required: true }]}>
+                        <Form.Item name="departmentName" label="Όνομα" rules={[{ required: true }]}>
                             <Input name = "departmentName" id="departmentName" />
                         </Form.Item>
                         

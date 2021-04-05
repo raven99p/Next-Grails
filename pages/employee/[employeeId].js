@@ -106,7 +106,7 @@ export default function createEmployeeForm(props) {
                     {height:"100vh"}
                   }                    
             >
-              <Form.Item name="employeeId" label="Id" type="text"  rules={[{ required: true }]} >
+              <Form.Item name="employeeId" label="Κωδικός" type="text"  rules={[{ required: true }]} >
                 <Input  readOnly />
               </Form.Item>
               <Form.Item name="firstName" label="Όνομα" type="text" rules={[{ required: true }]} >

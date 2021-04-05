@@ -57,9 +57,9 @@ export default function showDepartments() {
       </Button>
     );
     notification.open({
-      message: 'Confirm deletion',
+      message: 'Επιβεβαίωση Διαγραφής',
       description:
-        'Press delete if you wish to delete this employee ',
+        'Πατήστε το κουμπι διαγραφή αν επιθυμείτε να διαγράψετε το τμήμα',
       btn,
       key,
       onClose: close,
@@ -85,29 +85,29 @@ export default function showDepartments() {
 
   const columns = [ 
     {
-      title: 'Id',
+      title: 'Κωδικός',
       dataIndex: 'departmentid',
       key: 'departmentid',
       render: text => <a>{text}</a>,
     },
     {
-      title: 'Name',
+      title: 'Όνομα',
       dataIndex: 'departmentname',
       key: 'departmentname',
     },
     {
-      title: 'Actions',
+      title: 'Επιλογές',
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
           <Button size="small" type="primary" onClick={()=>router.push('/employee/showEmployees/' + text.departmentid)}>
-            view
+            Προβολή
           </Button>
           <Button size="small" type="primary" onClick={()=>router.push('/department/editDepartment/' + text.departmentid)}>
-            Edit
+            Επεξεργασία
           </Button>
           <Button size="small" type="primary" onClick={()=>openNotificationDelete(text.departmentid)}>
-            Delete
+            Διαγραφή
           </Button>
         </Space>
       ),

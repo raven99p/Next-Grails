@@ -81,47 +81,47 @@ export default function showEmployees(props) {
 
   const columns = [ 
       {
-        title: 'Id',
+        title: 'Κωδικός',
         dataIndex: 'employeeid',
         key: 'employeeid',
         render: text => <a>{text}</a>,
       },
       {
-        title: 'First name',
+        title: 'Όνομα',
         dataIndex: 'firstname',
         key: 'firstname',
       },
       {
-        title: 'Last name',
+        title: 'Επώνυμο',
         dataIndex: 'lastname',
         key: 'lastname',
       },
       {
-        title: 'AFM',
+        title: 'ΑΦΜ',
         dataIndex: 'afm',
         key: 'afm',
         render: text => <a>{text.toString()}</a>,
       },
       {
-        title: 'Date of birth',
+        title: 'Ημερομηνία γέννησης',
         dataIndex: 'dob',
         key: 'dob',
       },
       {
-        title: 'Deaprtment Name',
+        title: 'Όνομα Τμήματος',
         dataIndex: 'departmentid',
         key: 'departmentid',
       },
       {
-        title: 'Actions',
+        title: 'Επιλογές',
         key: 'action',
         render: (text, record) => (
           <Space size="middle">
             <Button size="small" type="primary" onClick={()=>router.push('/employee/' + text.employeeid)}>
-              Edit
+              Επεξεργασία
             </Button>
             <Button size="small" type="primary" onClick={()=>openNotification(text.employeeid)}>
-              Delete
+              Διαγραφή
             </Button>
           </Space>
         ),

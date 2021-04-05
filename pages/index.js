@@ -86,7 +86,7 @@ export default function login() {
           >
             <Form.Item
               name="username"
-              label="username"
+              label="Email"
               rules={[
                 {
                   type: 'email',
@@ -103,7 +103,7 @@ export default function login() {
 
             <Form.Item
               name="password"
-              label="Password"
+              label="Κωδικός"
               rules={[
                 {
                   required: true,
