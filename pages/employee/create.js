@@ -37,7 +37,7 @@ export default function createEmployeeForm() {
       const grailsResponse = await createEmployee(values);
       const data = await grailsResponse.json();
       if (data.status==200) {
-        router.push('/employee/showEmployees/'+values.departmentId);
+        router.push('/departments/'+values.departmentId);
       }
     }
     

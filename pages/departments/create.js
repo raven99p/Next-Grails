@@ -16,7 +16,7 @@ export default function createDepartmentForm() {
         const data = await grailsResponse.json();
         console.log(data);
         if (data.status==200) {
-          router.push('/department/showDepartments');
+          router.push('/departments');
         } else if (data.status==400) {
             router.push('/error');
         }

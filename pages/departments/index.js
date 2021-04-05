@@ -38,7 +38,7 @@ export default function showDepartments() {
     const data = await grailsResponse.json();
     if (data.status==200) {
       getAllDepartments();
-      router.push('/department/showDepartments');
+      router.push('/departments');
     } else if (data.status==400) {
       openNotificationFailedDepartmentDelete();
     }
@@ -100,10 +100,10 @@ export default function showDepartments() {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <Button size="small" type="primary" onClick={()=>router.push('/employee/showEmployees/' + text.departmentid)}>
+          <Button size="small" type="primary" onClick={()=>router.push('/departments/' + text.departmentid)}>
             Προβολή
           </Button>
-          <Button size="small" type="primary" onClick={()=>router.push('/department/editDepartment/' + text.departmentid)}>
+          <Button size="small" type="primary" onClick={()=>router.push('/departments/edit/' + text.departmentid)}>
             Επεξεργασία
           </Button>
           <Button size="small" type="primary" onClick={()=>openNotificationDelete(text.departmentid)}>

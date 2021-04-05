@@ -63,7 +63,7 @@ export default function editDepartmentForm(props) {
         const grailsResponse = await updateDepartment(values);
         const data = await grailsResponse.json();
         if (data.status==200) {
-          router.push('/department/showDepartments');
+          router.push('/departments');
         }
     }
     

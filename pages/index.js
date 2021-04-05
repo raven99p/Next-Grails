@@ -21,7 +21,7 @@ export default function login() {
     const grailsResponse = await verification(values);
     const data = await grailsResponse.json();
     if (data.status==200) {
-      router.push('/department/showDepartments')
+      router.push('/departments')
     }else {
       openNotification()
     }

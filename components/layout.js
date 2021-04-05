@@ -40,17 +40,17 @@ export default function LayoutCustom({ children }) {
       
       <Menu theme="dark" mode="horizontal" >
         <Menu.Item key="1">
-          <Link href="/department/showDepartments">
+          <Link href="/departments">
                 <a> Postem </a>
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link href="/employee/createEmployee">
+          <Link href="/employee/create">
                 <a> Δημιουργία υπαλλήλου </a>
           </Link>
         </Menu.Item>
         <Menu.Item key="3">
-          <Link href="/department/createDepartment">
+          <Link href="/departments/create">
                 <a> Δημιουργία τμήματος </a>
           </Link>
         </Menu.Item>

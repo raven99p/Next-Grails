@@ -1,7 +1,7 @@
 import { Button, Table, Space, notification } from 'antd';
 import {useRouter} from 'next/router';
-import LayoutCustom from '../../../components/layout';
-import { deleteEmployee, getEmployees } from '../../../utilitieFunctions/employeeFetchingFunctions';
+import LayoutCustom from '../../components/layout';
+import { deleteEmployee, getEmployees } from '../../utilitieFunctions/employeeFetchingFunctions';
 import {useState, useEffect} from 'react';
 export async function getServerSideProps(context) {
   try {
